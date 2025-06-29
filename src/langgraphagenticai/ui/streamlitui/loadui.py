@@ -36,18 +36,14 @@ class loadStreamlitUI:    #default configuration the info that's displayed in th
 
 
     def load_streamlit_ui(self):
-        st.set_page_config(page_title= "🤖 " + self.config.get_page_title(),layout = "wide")
         st.session_state.timeframe = ''
         st.session_state.IsFetchButtonClicked = False
         st.session_state.IsSDLC = False
 
-
-
-
         with st.sidebar:
             #Get options from config
-            llm_options = self.config.get_llm_options()
-            usecase_options = self.config.get_usecase_options()
+            llm_options = self.config.get_llm_option()
+            usecase_options = self.config.get_usecase_option()
 
 
             #LLM selection
@@ -55,7 +51,7 @@ class loadStreamlitUI:    #default configuration the info that's displayed in th
 
             if self.user_controls["selected_llm"] == "Groq":
                 #Model selection
-                model_options = self.config.get_groq_model_options()
+                model_options = self.config.get_groq_model_option()
                 self.user_controls["selected_groq_model"] = st.selectbox("Select Model", model_options)
                 #API key input
                 self.user_controls["GROQ_API_KEY"] = st.session_state["GROQ_API_KEY"] = st.text_input("API Key", type="password")
